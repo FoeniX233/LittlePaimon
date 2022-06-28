@@ -1,5 +1,26 @@
-# nonebot-plugin-myb-exchange
-Nonebot2米游币商品自动兑换插件
+<p align="center" >
+  <a href="https://github.com/CMHopeSunshine/LittlePaimon/tree/nonebot2"><img src="http://static.cherishmoon.fun/LittlePaimon/readme/logo.png" width="256" height="256" alt="LittlePaimon"></a>
+</p>
+<h1 align="center">nonebot-plugin-myb-exchange</h1>
+<h4 align="center">Nonebot2米游币商品自动兑换插件</h4>
+<p align="center" >
+<a href="https://pypi.python.org/pypi/nonebot-plugin-myb-exchange">
+    <img src="https://img.shields.io/pypi/v/nonebot-plugin-myb-exchange" alt="pypi">
+</a>
+<img src="https://img.shields.io/badge/Python-3.7.3+-yellow" alt="python">
+<img src="https://img.shields.io/badge/Nonebot-2.0.0b4-green" alt="python">
+</p>
+
+## 安装
+通过pip安装
+```
+pip install nonebot-plugin-myb-exchange
+```
+通过poetry安装
+```
+poetry add nonebot-plugin-myb-exchange
+```
+
 
 ## 使用方法
 > 由于涉及到cookie、地址等敏感信息，所以仅限**私聊**Bot使用
