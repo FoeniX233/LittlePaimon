@@ -6,6 +6,9 @@ authors = ["惜月 <277073121@qq.com>"]
 readme = "README.md"
 license = "AGPL"
 keywords = ["nonebot", "nonebot2", "mihoyo"]
+homepage = "https://github.com/CMHopeSunshine/LittlePaimon/tree/Bot/src/plugins/nonebot_plugin_myb_exchange"
+repository = "https://github.com/CMHopeSunshine/LittlePaimon/tree/Bot/src/plugins/nonebot_plugin_myb_exchange"
+documentation = "https://github.com/CMHopeSunshine/LittlePaimon/tree/Bot/src/plugins/nonebot_plugin_myb_exchange#readme"
 packages = [
     { include = "nonebot_plugin_myb_exchange/*.py", from = ".."}
 ]
