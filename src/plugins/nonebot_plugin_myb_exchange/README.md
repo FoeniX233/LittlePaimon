@@ -12,13 +12,23 @@
 </p>
 
 ## 安装
-通过pip安装
+> 需要配合nonebot2使用，安装方法详见[nb文档](https://v2.nonebot.dev/)
+- 通过nb脚手架安装（推荐）
+```
+nb plugin install nonebot-plugin-myb-exchange
+```
+- 通过pip安装
 ```
 pip install nonebot-plugin-myb-exchange
+
+# 还需要在bot.py加载插件，在bot.py中添加
+nonebot.load_plugin("nonebot-plugin-myb-exchange")
 ```
-通过poetry安装
+- 通过poetry安装
 ```
 poetry add nonebot-plugin-myb-exchange
+
+# 还需要在bot.py加载插件，同上
 ```
 
 
