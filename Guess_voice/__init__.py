@@ -22,7 +22,7 @@ dir_name = Path() / 'data' / 'LittlePaimon' / 'guess_voice' / 'voice'
 
 __plugin_meta__ = PluginMetadata(
     name="原神猜语音",
-    description="小派蒙的原神猜语音模块",
+    description="打工战士的原神猜语音模块",
     usage=(
         "原神猜语音[语言]\n"
         "原神语音[语言]<角色名>\n"
