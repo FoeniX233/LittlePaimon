@@ -206,7 +206,7 @@ async def _(event: MessageEvent, state: T_State, msg: Message = CommandArg()):
         state['msg'] = msg_text.strip()
 
 
-@sy.got('uid', prompt='请把要查询的uid给派蒙哦~')
+@sy.got('uid', prompt='请把要查询的uid给打工战士哦~')
 @exception_handler()
 async def _(event: MessageEvent, state: T_State):
     uid = transform_uid(state['uid'])
@@ -241,7 +241,7 @@ async def ssbq_handler(event: MessageEvent, msg: Message = CommandArg()):
         gid = str(event.user_id)
     uid, msg, user_id, use_cache = await get_uid_in_msg(event, msg)
     if not uid:
-        await ssbq.finish('请把要查的uid给派蒙哦!', at_sender=True)
+        await ssbq.finish('请把要查的uid给打工战士哦!', at_sender=True)
     find_remind_enable = re.search(r'(?P<action>开启提醒|关闭提醒|删除提醒)\s*((?P<num>\d{1,3})|(?:.*))', msg)
     if find_remind_enable:
         if event.message_type == 'guild':
@@ -249,7 +249,7 @@ async def ssbq_handler(event: MessageEvent, msg: Message = CommandArg()):
         if find_remind_enable.group('action') == '开启提醒':
             if find_remind_enable.group('num'):
                 await update_note_remind2(user_id, uid, gid, 1, find_remind_enable.group('num'))
-                await ssbq.finish(f'开启提醒成功,派蒙会在你的树脂达到{find_remind_enable.group("num")}时提醒你的', at_sender=True)
+                await ssbq.finish(f'开启提醒成功,打工战士会在你的树脂达到{find_remind_enable.group("num")}时提醒你的', at_sender=True)
             else:
                 await update_note_remind2(user_id, uid, gid, 1)
                 await ssbq.finish('开启提醒成功', at_sender=True)
@@ -291,7 +291,7 @@ async def myzj_handler(event: MessageEvent, msg: Message = CommandArg()):
         await myzj.finish(monthinfo_card)
 
 
-@ys.got('uid', prompt='请把要查询的uid给派蒙哦~')
+@ys.got('uid', prompt='请把要查询的uid给打工战士哦~')
 @exception_handler()
 async def ys_handler(bot: Bot, event: MessageEvent, state: T_State):
     uid = transform_uid(state['uid'])
@@ -318,7 +318,7 @@ async def ys_handler(bot: Bot, event: MessageEvent, state: T_State):
     await ys.finish(total_result)
 
 
-@ysa.got('uid', prompt='请把要查询的uid给派蒙哦~')
+@ysa.got('uid', prompt='请把要查询的uid给打工战士哦~')
 @exception_handler()
 async def ysa_handler(event: MessageEvent, state: T_State):
     uid = transform_uid(state['uid'])
@@ -338,7 +338,7 @@ async def ysa_handler(event: MessageEvent, state: T_State):
     await ysa.finish(total_result)
 
 
-@ysc.got('uid', prompt='请把要查询的uid给派蒙哦~')
+@ysc.got('uid', prompt='请把要查询的uid给打工战士哦~')
 async def _(event: MessageEvent, state: T_State):
     uid = transform_uid(state['uid'])
     if uid:
@@ -347,7 +347,7 @@ async def _(event: MessageEvent, state: T_State):
         await ysa.finish('这个uid不正确哦~，请检查一下', at_sender=True)
 
 
-@ysc.got('msg', prompt='请把要查询的角色名给派蒙哦~')
+@ysc.got('msg', prompt='请把要查询的角色名给打工战士哦~')
 async def _(event: MessageEvent, state: T_State):
     name = state['msg']
     if isinstance(name, Message):
@@ -385,11 +385,11 @@ async def _(event: MessageEvent, state: T_State):
         elif choice not in match_alias.keys():
             state['times'] = state['times'] + 1 if 'times' in state else 1
             if state['times'] == 1:
-                await ysc.reject(f'请旅行者从上面的角色中选一个问派蒙\n回答\"q\"可以取消查询', at_sender=True)
+                await ysc.reject(f'请旅行者从上面的角色中选一个问打工战士\n回答\"q\"可以取消查询', at_sender=True)
             elif state['times'] == 2:
-                await ysc.reject(f'别调戏派蒙啦，快选一个吧，不想问了请回答\"q\"！', at_sender=True)
+                await ysc.reject(f'别调戏打工战士啦，快选一个吧，不想问了请回答\"q\"！', at_sender=True)
             elif state['times'] >= 3:
-                await ysc.finish(f'看来旅行者您有点神志不清哦(，下次再问派蒙吧' + MessageSegment.face(146), at_sender=True)
+                await ysc.finish(f'看来旅行者您有点神志不清哦(，下次再问打工战士吧' + MessageSegment.face(146), at_sender=True)
         else:
             role = [m for m in list(match_alias.items()) if m[0] == choice][0]
     query_dict, total_result = uid_userId_to_dict(state['uid'], state['user_id'])
@@ -413,14 +413,14 @@ cookie_error_msg = '这个cookie无效哦，请旅行者确认是否正确\n1.ck
 async def ysb_handler(event: MessageEvent, msg: Message = CommandArg()):
     cookie = msg.extract_plain_text().strip()
     if cookie == '':
-        res = '获取cookie的教程：\ndocs.qq.com/doc/DQ3JLWk1vQVllZ2Z1\n获取到后，添加派蒙好友私聊发送ysb接复制到的cookie就行啦~'
+        res = '获取cookie的教程：\ndocs.qq.com/doc/DQ3JLWk1vQVllZ2Z1\n获取到后，添加打工战士好友私聊发送ysb接复制到的cookie就行啦~'
         await ysb.finish(res, at_sender=True)
     else:
         cookie_info, mys_id = await get_bind_game(cookie)
         if not cookie_info or cookie_info['retcode'] != 0:
             msg = cookie_error_msg
             if event.message_type != 'private':
-                msg += '\n当前是在群聊里绑定，建议旅行者添加派蒙好友私聊绑定!'
+                msg += '\n当前是在群聊里绑定，建议旅行者添加打工战士好友私聊绑定!'
             await ysb.finish(msg, at_sender=True)
         else:
             uid = nickname = None
@@ -433,7 +433,7 @@ async def ysb_handler(event: MessageEvent, msg: Message = CommandArg()):
                 await update_private_cookie(user_id=str(event.user_id), uid=uid, mys_id=mys_id, cookie=cookie)
                 await update_last_query(str(event.user_id), uid, 'uid')
                 await delete_cookie_cache(uid, key='uid', all=False)
-                msg = f'{nickname}绑定成功啦!使用ys/ysa等指令和派蒙互动吧!'
+                msg = f'{nickname}绑定成功啦!使用ys/ysa等指令和打工战士互动吧!'
                 if event.message_type != 'private':
                     msg += '\n当前是在群聊里绑定，建议旅行者把cookie撤回哦!'
                 await ysb.finish(MsgBd.Text(msg), at_sender=True)
@@ -445,7 +445,7 @@ async def add_public_ck_handler(event: MessageEvent, msg: Message = CommandArg()
     cookie = str(msg).strip()
     if await check_cookie(cookie):
         await insert_public_cookie(cookie)
-        await add_public_ck.finish('公共cookie添加成功啦,派蒙开始工作!')
+        await add_public_ck.finish('公共cookie添加成功啦,打工战士开始工作!')
     else:
         await add_public_ck.finish(cookie_error_msg)
 
@@ -454,7 +454,7 @@ async def add_public_ck_handler(event: MessageEvent, msg: Message = CommandArg()
 @exception_handler()
 async def delete_ck_handler(event: MessageEvent):
     await delete_private_cookie(str(event.user_id))
-    await delete_ck.finish('派蒙把你的私人cookie都删除啦!', at_sender=True)
+    await delete_ck.finish('打工战士把你的私人cookie都删除啦!', at_sender=True)
 
 
 @mys_sign.handle()
@@ -493,7 +493,7 @@ async def mys_sign_auto_handler(event: MessageEvent, msg: Message = CommandArg()
     msg = str(msg).strip()
     find_uid = re.search(r'(?P<uid>(1|2|5)\d{8})', msg)
     if not find_uid:
-        await mys_sign_auto.finish('请把正确的需要帮忙签到的uid给派蒙哦!', at_sender=True)
+        await mys_sign_auto.finish('请把正确的需要帮忙签到的uid给打工战士哦!', at_sender=True)
     else:
         uid = find_uid.group('uid')
         find_action = re.search(r'(?P<action>开启|启用|打开|关闭|禁用|on|off)', msg)
@@ -503,7 +503,7 @@ async def mys_sign_auto_handler(event: MessageEvent, msg: Message = CommandArg()
                 if not cookie:
                     await mys_sign_auto.finish('你的该uid还没绑定cookie哦，先用ysb绑定吧!', at_sender=True)
                 await add_auto_sign(str(event.user_id), uid, remind_id)
-                await mys_sign_auto.finish('开启米游社自动签到成功,派蒙会在每日0点帮你签到', at_sender=True)
+                await mys_sign_auto.finish('开启米游社自动签到成功,打工战士会在每日0点帮你签到', at_sender=True)
             elif find_action.group('action') in ['关闭', '禁用', 'off']:
                 await delete_auto_sign(str(event.user_id), uid)
                 await mys_sign_auto.finish('关闭米游社自动签到成功', at_sender=True)
@@ -540,7 +540,7 @@ async def _(event: MessageEvent, state: T_State, msg: Message = CommandArg()):
         await update_info.finish(f'每个会话每15秒才能更新一次信息，请稍等一下吧~(剩余{ud_lmt.left_time(get_message_id(event))}秒)')
 
 
-@update_info.got('uid', prompt='请把要更新的uid给派蒙哦~')
+@update_info.got('uid', prompt='请把要更新的uid给打工战士哦~')
 @exception_handler()
 async def _(event: MessageEvent, uid: Message = Arg('uid')):
     uid = transform_uid(uid)
@@ -548,20 +548,20 @@ async def _(event: MessageEvent, uid: Message = Arg('uid')):
         await update_info.finish('这好像不是一个正确的uid哦~，请检查一下', at_sender=True)
     await update_last_query(str(event.user_id), uid)
 
-    await update_info.send('派蒙开始更新信息~请稍等哦~')
+    await update_info.send('打工战士开始更新信息~请稍等哦~')
     enka_data = await get_enka_data(uid)
     if not enka_data:
         if uid[0] == '5' or uid[0] == '2':
             await update_info.finish('暂不支持B服账号哦~请等待开发者更新吧~')
         else:
-            await update_info.finish('派蒙没有查到该uid的信息哦~')
+            await update_info.finish('打工战士没有查到该uid的信息哦~')
     ud_lmt.start_cd(uid, 300)
     ud_lmt.start_cd(get_message_id(event), 15)
     player_info = PlayerInfo(uid)
     player_info.set_player(enka_data['playerInfo'])
     if 'avatarInfoList' not in enka_data:
         player_info.save()
-        await update_info.finish('你未在游戏中打开角色展柜，派蒙查不到~请打开5分钟后再试~')
+        await update_info.finish('你未在游戏中打开角色展柜，打工战士查不到~请打开5分钟后再试~')
     else:
         for role in enka_data['avatarInfoList']:
             player_info.set_role(role)
@@ -591,7 +591,7 @@ async def _(event: MessageEvent, state: T_State, msg: Message = CommandArg()):
                 state['uid'] = uid
     msg = msg.extract_plain_text().replace(state['uid'] if 'uid' in state else 'ysd', '').strip()
     if not msg:
-        await role_info.finish('请把要查询角色名给派蒙哦~')
+        await role_info.finish('请把要查询角色名给打工战士哦~')
     if msg.startswith(('a', '全部', '所有', '查看')):
         state['role'] = 'all'
     else:
@@ -599,10 +599,10 @@ async def _(event: MessageEvent, state: T_State, msg: Message = CommandArg()):
         if match_alias:
             state['role'] = match_alias if isinstance(match_alias, str) else tuple(match_alias.keys())[0]
         else:
-            await role_info.finish(MsgBd.Text(f'哪有名为{msg}的角色啊，别拿派蒙开玩笑!'))
+            await role_info.finish(MsgBd.Text(f'哪有名为{msg}的角色啊，别拿打工战士开玩笑!'))
 
 
-@role_info.got('uid', prompt='请把要查询的uid给派蒙哦~')
+@role_info.got('uid', prompt='请把要查询的uid给打工战士哦~')
 @exception_handler()
 async def _(event: MessageEvent, state: T_State):
     uid = transform_uid(state['uid'])
@@ -616,14 +616,14 @@ async def _(event: MessageEvent, state: T_State):
     roles_list = player_info.get_roles_list()
     if role == 'all':
         if not roles_list:
-            await role_info.finish('你在派蒙这里没有角色面板信息哦，先用 更新角色信息 命令获取吧~', at_sender=True)
+            await role_info.finish('你在打工战士这里没有角色面板信息哦，先用 更新角色信息 命令获取吧~', at_sender=True)
         res = '目前已获取的角色面板有：\n'
         for r in roles_list:
             res += r
             res += ' ' if (roles_list.index(r) + 1) % 4 else '\n'
         await role_info.finish(res, at_sender=True)
     if role not in roles_list:
-        await role_info.finish(MsgBd.Text(f'派蒙还没有你{role}的信息哦，先用 更新角色信息 命令更新吧~'), at_sender=True)
+        await role_info.finish(MsgBd.Text(f'打工战士还没有你{role}的信息哦，先用 更新角色信息 命令更新吧~'), at_sender=True)
     else:
         role_data = player_info.get_roles_info(role)
         img = await draw_role_card(uid, role_data)
@@ -646,7 +646,7 @@ async def auto_sign():
     data = await get_auto_sign()
     if data:
         ann = defaultdict(lambda: defaultdict(list))
-        logger.info('---派蒙开始执行米游社自动签到---')
+        logger.info('---打工战士开始执行米游社自动签到---')
         sign_list = await get_sign_list()
         for user_id, uid, remind_id in data:
             await sleep(random.randint(3, 8))
@@ -687,7 +687,7 @@ async def coin_auto_sign():
     data = await get_coin_auto_sign()
     ann = defaultdict(lambda: defaultdict(list))
     if data:
-        logger.info('---派蒙开始执行米游币自动获取---')
+        logger.info('---打工战士开始执行米游币自动获取---')
         for user_id, uid, remind_id in data:
             sk = await get_private_stoken(uid, key='uid')
             stoken = sk[0][4]
@@ -729,7 +729,7 @@ async def check_note():
         return
     data = await get_note_remind()
     if data:
-        logger.info('---派蒙开始检查实时便签树脂提醒---')
+        logger.info('---打工战士开始检查实时便签树脂提醒---')
         for user_id, uid, count, remind_group, enable, last_remind_time, today_remind_count in data:
             if last_remind_time:
                 last_remind_time = datetime.datetime.strptime(last_remind_time, '%Y%m%d %H:%M:%S')
@@ -747,14 +747,14 @@ async def check_note():
                         await delete_note_remind(user_id, uid)
                         if user_id == remind_group:
                             await get_bot().send_private_msg(user_id=user_id,
-                                                             message=f'[CQ:at,qq={user_id}]你的cookie失效了哦,派蒙没办法帮你检查树脂,'
-                                                                     f'请重新添加ck后再叫派蒙开启提醒')
+                                                             message=f'[CQ:at,qq={user_id}]你的cookie失效了哦,打工战士没办法帮你检查树脂,'
+                                                                     f'请重新添加ck后再叫打工战士开启提醒')
                         else:
                             await get_bot().send_group_msg(group_id=remind_group,
-                                                           message=f'[CQ:at,qq={user_id}]你的cookie失效了哦,派蒙没办法帮你检查树脂,'
-                                                                   f'请重新添加ck后再叫派蒙开启提醒')
+                                                           message=f'[CQ:at,qq={user_id}]你的cookie失效了哦,打工战士没办法帮你检查树脂,'
+                                                                   f'请重新添加ck后再叫打工战士开启提醒')
                     except Exception as e:
-                        logger.error(f'---派蒙发送树脂提醒失败:{e}---')
+                        logger.error(f'---打工战士发送树脂提醒失败:{e}---')
                 else:
                     if now_data['data']['current_resin'] >= count:
                         logger.info(f'---用户{user_id}的uid{uid}的树脂已经达到阈值了,发送提醒---')
@@ -773,7 +773,7 @@ async def check_note():
                                 await get_bot().send_group_msg(group_id=remind_group,
                                                                message=f'[CQ:at,qq={user_id}]⚠️你的树脂已经达到了{now_data["data"]["current_resin"]},记得清理哦!⚠️')
                         except Exception as e:
-                            logger.error(f'---派蒙发送树脂提醒失败:{e}---')
+                            logger.error(f'---打工战士发送树脂提醒失败:{e}---')
                 await sleep(3)
 
 
@@ -790,7 +790,7 @@ async def daily_update():
 # @scheduler.scheduled_job('cron', hour=3, misfire_grace_time=10)
 async def all_update():
     uid_list = await get_all_query()
-    logger.info('派蒙开始更新用户角色信息，共{}个用户'.format(len(uid_list)))
+    logger.info('打工战士开始更新用户角色信息，共{}个用户'.format(len(uid_list)))
     failed_time = 0
     for uid in uid_list:
         try:
@@ -802,7 +802,7 @@ async def all_update():
                     for role in data['avatarInfoList']:
                         player_info.set_role(role)
                 player_info.save()
-                logger.info(f'---派蒙更新{uid}的角色信息成功---')
+                logger.info(f'---打工战士更新{uid}的角色信息成功---')
             await sleep(random.randint(8, 15))
         except Exception:
             failed_time += 1
@@ -843,7 +843,7 @@ async def get_mys_coin_auto_handler(event: MessageEvent, msg: Message = CommandA
     msg = msg.extract_plain_text().strip()
     find_uid = re.search(r'(?P<uid>(1|2|5)\d{8})', msg)
     if not find_uid:
-        await get_mys_coin_auto.finish('请把正确的需要帮忙获取的uid给派蒙哦!', at_sender=True)
+        await get_mys_coin_auto.finish('请把正确的需要帮忙获取的uid给打工战士哦!', at_sender=True)
     else:
         uid = find_uid.group('uid')
         find_action = re.search(r'(?P<action>开启|启用|打开|关闭|禁用|on|off)', msg)
@@ -854,7 +854,7 @@ async def get_mys_coin_auto_handler(event: MessageEvent, msg: Message = CommandA
                 if not stoken:
                     await get_mys_coin_auto.finish('你的该uid还没绑定stoken哦，先用添加stoken绑定吧!', at_sender=True)
                 await add_coin_auto_sign(str(event.user_id), uid, remind_id)
-                await get_mys_coin_auto.finish('开启米游币自动获取成功,派蒙会在每日0点帮你签到', at_sender=True)
+                await get_mys_coin_auto.finish('开启米游币自动获取成功,打工战士会在每日0点帮你签到', at_sender=True)
             elif find_action.group('action') in ['关闭', '禁用', 'off']:
                 await delete_coin_auto_sign(str(event.user_id), uid)
                 await get_mys_coin_auto.finish('关闭米游币自动获取成功', at_sender=True)
@@ -867,7 +867,7 @@ async def get_mys_coin_auto_handler(event: MessageEvent, msg: Message = CommandA
 async def add_stoken_handler(event: MessageEvent, msg: Message = CommandArg()):
     stoken = msg.extract_plain_text().strip()
     if stoken == '':
-        res = '获取stoken的教程：\ndocs.qq.com/doc/DQ3JLWk1vQVllZ2Z1\n获取到后，添加派蒙好友私聊发送ysb接复制到的cookie就行啦~'
+        res = '获取stoken的教程：\ndocs.qq.com/doc/DQ3JLWk1vQVllZ2Z1\n获取到后，添加打工战士好友私聊发送ysb接复制到的cookie就行啦~'
         await add_stoken.finish(res, at_sender=True)
     else:
         uid = (await get_private_cookie(event.user_id, key='user_id'))[0][2]
@@ -877,7 +877,7 @@ async def add_stoken_handler(event: MessageEvent, msg: Message = CommandArg()):
         if not stoken_info or stoken_info['retcode'] != 0:
             msg = cookie_error_msg
             if event.message_type != 'private':
-                msg += '\n当前是在群聊里绑定，建议旅行者添加派蒙好友私聊绑定!'
+                msg += '\n当前是在群聊里绑定，建议旅行者添加打工战士好友私聊绑定!'
             await add_stoken.finish(msg, at_sender=True)
         else:
             if uid:

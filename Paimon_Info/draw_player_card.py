@@ -186,7 +186,7 @@ async def draw_player_card(data, chara_data, uid, nickname="旅行者"):
     elif data['retcode'] == 10104:
         return f'uid{uid}有误哦，检查一下吧'
     elif data['retcode'] != 0:
-        return f'派蒙获取{uid}数据失败了，获取状态：\n{data["message"]},{data["retcode"]}'
+        return f'打工战士获取{uid}数据失败了，获取状态：\n{data["message"]},{data["retcode"]}'
     data = data['data']
     bg_img = load_image(res_path / 'player_card' / '背景.png', mode='RGBA')
     bg_draw = ImageDraw.Draw(bg_img)
@@ -239,7 +239,7 @@ async def draw_player_card(data, chara_data, uid, nickname="旅行者"):
             elif i > 8:
                 break
     else:
-        nocha = f'*uid{uid}关闭了角色详情显示，派蒙看不到哦'
+        nocha = f'*uid{uid}关闭了角色详情显示，打工战士看不到哦'
     return MessageBuild.Image(bg_img, quality=80) + MessageBuild.Text(nocha)
 
 
@@ -283,7 +283,7 @@ async def draw_all_chara_card(data, uid):
     elif data['retcode'] == 10104:
         return f'uid{uid}有误哦，检查一下吧'
     elif data['retcode'] != 0:
-        return f'派蒙获取{uid}数据失败了，获取状态：\n{data["message"]},{data["retcode"]}'
+        return f'打工战士获取{uid}数据失败了，获取状态：\n{data["message"]},{data["retcode"]}'
     data = data['data']['avatars']
     chara_num = len(data)
     col = int(chara_num / 4)
@@ -368,7 +368,7 @@ async def draw_chara_card(data, skill_data, chara_name, uid):
     elif data['retcode'] == 10104:
         return f'uid{uid}有误哦，检查一下吧'
     elif data['retcode'] != 0:
-        return f'派蒙获取{uid}数据失败了，获取状态:\n{data["message"]},{data["retcode"]}'
+        return f'打工战士获取{uid}数据失败了，获取状态:\n{data["message"]},{data["retcode"]}'
     data = data['data']['avatars']
     f = False
     for chara in data:

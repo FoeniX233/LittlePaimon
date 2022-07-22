@@ -11,7 +11,7 @@ __plugin_meta__ = PluginMetadata(
     name="米游币商品抢兑",
     description=打工战士"的米游币商品抢兑模块",
     usage=(
-        "myb 跟随派蒙的指引录入兑换计划\n"
+        "myb 跟随打工战士的指引录入兑换计划\n"
         "myb_info 查看当前的兑换计划\n"
         "myb_delete 删除你的所有兑换计划\n"
     ),
@@ -26,7 +26,7 @@ __plugin_meta__ = PluginMetadata(
 myb_exchange = on_command('myb', aliases={'米游币兑换', '米游币商品兑换', '米游社商品兑换'}, priority=4, block=True)
 myb_exchange.__paimon_help__ = {
     "usage":     "myb",
-    "introduce": "让派蒙帮你兑换米游币商品哦",
+    "introduce": "让打工战士帮你兑换米游币商品哦",
     "priority":  7
 }
 myb_info = on_command('myb_info', aliases={'米游币兑换信息', '米游币兑换计划'}, priority=4, block=True)
@@ -153,7 +153,7 @@ async def _(event: PrivateMessageEvent, state: T_State, msg: Message = Arg('good
         if msg == good['id']:
             state['goods'] = good
             save_exchange_info(event.user_id, state)
-            await myb_exchange.finish('派蒙记住啦！到时候会帮你兑换，发送 myb_info 可以再次确认兑换信息，发送 myb_delete 可以取消兑换计划')
+            await myb_exchange.finish('打工战士记住啦！到时候会帮你兑换，发送 myb_info 可以再次确认兑换信息，发送 myb_delete 可以取消兑换计划')
     good_str = ''
     for good in state['goods_search_result']:
         good_str += f'ID：{good["id"]}, 商品名：{good["name"]}\n'

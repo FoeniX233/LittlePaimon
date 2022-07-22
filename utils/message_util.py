@@ -191,7 +191,7 @@ async def send_cookie_delete_msg(cookie_info):
         logger.info(f'---{msg}---')
         for superuser in get_bot().config.superusers:
             try:
-                await get_bot().send_private_msg(user_id=superuser, message=msg + '，派蒙帮你删除啦!')
+                await get_bot().send_private_msg(user_id=superuser, message=msg + '，打工战士帮你删除啦!')
             except Exception as e:
                 logger.error(f'发送cookie删除消息失败: {e}')
 
@@ -218,7 +218,7 @@ def uid_userId_to_dict(uid, user_id) -> Tuple[dict, Message]:
             if u is not None:
                 query_dict[u] = us
             else:
-                total_result += MessageSegment.text(f'派蒙没有{us}的{u}信息哦，请把uid给派蒙吧~')
+                total_result += MessageSegment.text(f'打工战士没有{us}的{u}信息哦，请把uid给打工战士吧~')
     return query_dict, total_result
 
 
