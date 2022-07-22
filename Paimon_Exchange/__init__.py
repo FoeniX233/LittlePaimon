@@ -9,7 +9,7 @@ from .data_source import get_address, get_goods, save_exchange_info, get_exchang
 
 __plugin_meta__ = PluginMetadata(
     name="米游币商品抢兑",
-    description="小派蒙的米游币商品抢兑模块",
+    description=打工战士"的米游币商品抢兑模块",
     usage=(
         "myb 跟随派蒙的指引录入兑换计划\n"
         "myb_info 查看当前的兑换计划\n"

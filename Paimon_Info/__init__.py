@@ -41,7 +41,7 @@ from .get_coin import MihoyoBBSCoin
 
 __plugin_meta__ = PluginMetadata(
     name="Paimon_Info",
-    description="小派蒙的原神信息查询模块",
+    description="打工战士的原神信息查询模块",
     usage=(
         "[ys (uid)]查看原神个人卡片(包含宝箱、探索度等数据)\n"
         "[ysa (uid)]查看所有公开的8角色的简略信息\n"

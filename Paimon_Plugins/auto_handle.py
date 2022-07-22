@@ -47,7 +47,7 @@ async def addGroup(bot: Bot, event: GroupRequestEvent):
 async def FriendNew(bot: Bot, event: FriendAddNoticeEvent):
     greet_emoticon = MessageBuild.Image(Path() / 'resources' / 'LittlePaimon' / 'emoticons' / '派蒙-干杯.png', mode='RGBA')
     await sleep(random.randint(4, 8))
-    await bot.send_private_msg(user_id=event.user_id, message=Message(MessageSegment.text('旅行者你好呀~，这里是小派蒙，对我说help查看帮助吧~\n') + greet_emoticon))
+    await bot.send_private_msg(user_id=event.user_id, message=Message(MessageSegment.text('旅行者你好呀~，这里是打工战士，对我说help查看帮助吧~\n') + greet_emoticon))
 
 
 @notice_handle.handle()
@@ -56,7 +56,7 @@ async def GroupNewMember(bot: Bot, event: GroupIncreaseNoticeEvent):
     if event.user_id == event.self_id:
         await sleep(random.randint(4, 8))
         await bot.send_group_msg(group_id=event.group_id, message=Message(
-            MessageSegment.text('旅行者们大家好呀~，这里是小派蒙，对我说help查看帮助吧~\n') + greet_emoticon))
+            MessageSegment.text('旅行者们大家好呀~，这里是打工战士，对我说help查看帮助吧~\n') + greet_emoticon))
     elif event.group_id not in config.paimon_greet_ban:
         await sleep(random.randint(4, 8))
         await bot.send_group_msg(group_id=event.group_id, message=Message(

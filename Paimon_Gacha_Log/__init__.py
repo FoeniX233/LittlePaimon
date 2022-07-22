@@ -16,7 +16,7 @@ from ..utils.message_util import get_uid_in_msg
 
 __plugin_meta__ = PluginMetadata(
     name="Paimon_Gacha_Log",
-    description="小派蒙的原神抽卡记录模块",
+    description="打工战士的原神抽卡记录模块",
     usage=(
         "1.[获取抽卡记录 (uid) (url)]提供url，获取原神抽卡记录，需要一定时间"
         "2.[查看抽卡记录 (uid)]查看抽卡记录分析"

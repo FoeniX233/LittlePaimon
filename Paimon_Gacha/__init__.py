@@ -14,7 +14,7 @@ from ..utils.config import config
 
 __plugin_meta__ = PluginMetadata(
     name="原神模拟抽卡",
-    description="小派蒙的原神模拟抽卡模块",
+    description="打工战士的原神模拟抽卡模块",
     usage=(
         "1.[抽n十连xx池]抽n次xx池的十连，最多同时5次"
         "*池子和官方同步，有角色1|角色2|武器|常驻，默认为角色1"

@@ -19,7 +19,7 @@ __paimon_help__ = {
 
 __plugin_meta__ = PluginMetadata(
     name="Paimon_Wiki",
-    description="小派蒙的wiki查询模块",
+    description="打工战士的wiki查询模块",
     usage=(
         "1.[xx角色攻略]查看西风驿站出品的角色一图流攻略\n"
         "2.[xx角色材料]查看惜月出品的角色材料统计\n"
