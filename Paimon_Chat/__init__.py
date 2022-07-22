@@ -16,13 +16,13 @@ from ..utils.config import config
 from ..utils.message_util import MessageBuild
 
 __plugin_meta__ = PluginMetadata(
-    name="派蒙聊天",
-    description="派蒙会发语音、会学群友们说骚话哦(",
+    name="打工战士聊天",
+    description="打工战士会发语音、会学群友们说骚话哦(",
     usage=(
         "被动技能"
     ),
     extra={
-        'type':    '派蒙聊天',
+        'type':    '打工战士聊天',
         'range':   ['group'],
         "author":  "惜月 SCUOP",
         "version": "1.0.1",
@@ -33,16 +33,16 @@ if config.paimon_mongodb_url:
     try:
         from .Learning_repeate import main
     except ImportError:
-        logger.warning('派蒙机器学习聊天启用失败，可能是mongodb连接失败或缺少相关库（jieba_fast、pymongo、pypinyin）')
+        logger.warning('打工战士机器学习聊天启用失败，可能是mongodb连接失败或缺少相关库（jieba_fast、pymongo、pypinyin）')
 else:
-    logger.warning('派蒙机器学习启用失败，未配置mongodb连接url，如无需该功能，可忽略')
+    logger.warning('打工战士机器学习启用失败，未配置mongodb连接url，如无需该功能，可忽略')
 
 driver = get_driver()
 
 voice_url = 'https://static.cherishmoon.fun/LittlePaimon/voice/'
 chat_lmt = FreqLimiter2(60)
 
-update_voice = on_command('更新派蒙语音', priority=2)
+update_voice = on_command('更新打工战士语音', priority=2)
 
 
 def check_group(event: Union[GroupMessageEvent, PrivateMessageEvent]) -> bool:
@@ -59,11 +59,11 @@ async def update_paimon_voice(event: MessageEvent):
         for key, value in voice_list.items():
             create_matcher(key, value['pattern'], value['cooldown'], value['pro'], value['files'])
         new_len = len(voice_list) - old_len
-        await update_voice.send(f'派蒙语音更新成功，本次获取到{len(voice_list)}种语音， 新增{new_len}种语音')
+        await update_voice.send(f'打工战士语音更新成功，本次获取到{len(voice_list)}种语音， 新增{new_len}种语音')
     except FinishedException:
         raise
     except Exception as e:
-        await update_voice.send(f'派蒙语音更新失败：{e}')
+        await update_voice.send(f'打工战士语音更新失败：{e}')
 
 
 def create_matcher(chat_word: str, pattern: str, cooldown: int, pro: float, responses):
@@ -94,7 +94,7 @@ def create_matcher(chat_word: str, pattern: str, cooldown: int, pro: float, resp
         except FinishedException:
             raise
         except Exception as e:
-            logger.error('派蒙发送语音失败', e)
+            logger.error('打工战士发送语音失败', e)
 
 
 @driver.on_startup

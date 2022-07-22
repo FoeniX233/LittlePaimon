@@ -80,7 +80,7 @@ class ChatData:
 
     @cached_property
     def to_me(self) -> bool:
-        return self.plain_text.startswith('派蒙')
+        return self.plain_text.startswith('打工战士')
 
 
 class Chat:

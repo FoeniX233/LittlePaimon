@@ -86,7 +86,7 @@ async def is_shutup(self_id: int, group_id: int) -> bool:
     flag: bool = info['shut_up_timestamp'] > time.time()
 
     if flag:
-        logger.info(f'repeater：派蒙[{self_id}]在群[{group_id}] 处于禁言状态')
+        logger.info(f'repeater：打工战士[{self_id}]在群[{group_id}] 处于禁言状态')
 
     return flag
 
@@ -95,7 +95,7 @@ async def is_shutup(self_id: int, group_id: int) -> bool:
 async def _(bot: Bot, event: GroupMessageEvent, state: T_State):
     delay = random.randint(2, 4)
     for item in state['answers']:
-        logger.info(f'repeater：派蒙[{event.self_id}]准备向群[{event.group_id}]回复[{item}]')
+        logger.info(f'repeater：打工战士[{event.self_id}]准备向群[{event.group_id}]回复[{item}]')
 
         await asyncio.sleep(delay)
         try:
@@ -135,10 +135,10 @@ async def _(bot: Bot, event: GroupMessageEvent):
         raw_message += re.sub(r'(\[CQ\:.+)(?:,url=*)(\])',
                               r'\1\2', raw_reply)
 
-    logger.info(f'repeater：派蒙[{event.self_id}] ready to ban [{raw_message}] in group [{event.group_id}]')
+    logger.info(f'repeater：打工战士[{event.self_id}] ready to ban [{raw_message}] in group [{event.group_id}]')
 
     if Chat.ban(event.group_id, event.self_id, raw_message, str(event.user_id)):
-        msg_send = ['派蒙知道错了...达咩!', '派蒙不会再这么说了...', '果面呐噻,派蒙说错话了...']
+        msg_send = ['打工战士知道错了...达咩!', '打工战士不会再这么说了...', '果面呐噻,打工战士说错话了...']
         await ban_msg.finish(random.choice(msg_send))
 
 
@@ -160,10 +160,10 @@ ban_msg_latest = on_message(
 @ban_msg_latest.handle()
 async def _(bot: Bot, event: GroupMessageEvent):
     logger.info(
-        f'repeater：派蒙[{event.self_id}]把群[{event.group_id}]最后的回复ban了')
+        f'repeater：打工战士[{event.self_id}]把群[{event.group_id}]最后的回复ban了')
 
     if Chat.ban(event.group_id, event.self_id, '', str(event.user_id)):
-        msg_send = ['派蒙知道错了...达咩!', '派蒙不会再这么说了...', '果面呐噻,派蒙说错话了...']
+        msg_send = ['打工战士知道错了...达咩!', '打工战士不会再这么说了...', '果面呐噻,打工战士说错话了...']
         await ban_msg_latest.finish(random.choice(msg_send))
 
 
@@ -176,7 +176,7 @@ async def speak_up():
     bot_id, group_id, messages = ret
 
     for msg in messages:
-        logger.info(f'repeater：派蒙[{bot_id}]准备向群[{group_id}]发送消息[{messages}]')
+        logger.info(f'repeater：打工战士[{bot_id}]准备向群[{group_id}]发送消息[{messages}]')
         await get_bot(str(bot_id)).call_api('send_group_msg', **{
             'message':  msg,
             'group_id': group_id
@@ -188,7 +188,7 @@ update_scheduler = require('nonebot_plugin_apscheduler').scheduler
 
 
 async def is_drink_msg(bot: Bot, event: GroupMessageEvent) -> bool:
-    return event.get_plaintext().strip() in ['派蒙干杯', '应急食品开餐', '派蒙干饭']
+    return event.get_plaintext().strip() in ['打工战士干杯', '应急食品开餐', '打工战士干饭']
 
 
 drink_msg = on_message(
@@ -202,7 +202,7 @@ drink_msg = on_message(
 @drink_msg.handle()
 async def _(bot: Bot, event: GroupMessageEvent):
     drunk_duration = random.randint(60, 600)
-    logger.info(f'repeater：派蒙[{event.self_id}]即将在群[{event.group_id}]喝醉，在[{drunk_duration}秒]后醒来')
+    logger.info(f'repeater：打工战士[{event.self_id}]即将在群[{event.group_id}]喝醉，在[{drunk_duration}秒]后醒来')
     Chat.drink(event.group_id)
     try:
         await drink_msg.send('呀，旅行者。你今天走起路来，怎么看着摇摇晃晃的？')
@@ -212,7 +212,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
     await asyncio.sleep(drunk_duration)
     ret = Chat.sober_up(event.group_id)
     if ret:
-        logger.info(f'repeater：派蒙[{event.self_id}]在群[{event.group_id}]醒酒了')
+        logger.info(f'repeater：打工战士[{event.self_id}]在群[{event.group_id}]醒酒了')
         await drink_msg.finish('呃...头好疼...下次不能喝那么多了...')
 
 
@@ -224,14 +224,14 @@ def update_data():
 
 # 群组开启
 onLearningGroup = on_message(
-    rule=to_me() & keyword("派蒙学习开启", "说怪话"),
+    rule=to_me() & keyword("打工战士学习开启", "说怪话"),
     priority=4,
     block=True,
     permission=permission.GROUP_ADMIN | permission.GROUP_OWNER | SUPERUSER
 )
 onLearningGroup.__paimon_help__ = {
-    "usage":     "@派蒙 <说怪话>",
-    "introduce": "开启派蒙在该群的机器学习能力",
+    "usage":     "@打工战士 <说怪话>",
+    "introduce": "开启打工战士在该群的机器学习能力",
     "priority":  94
 }
 
@@ -239,22 +239,22 @@ onLearningGroup.__paimon_help__ = {
 @onLearningGroup.handle()
 async def _(bot: Bot, event: GroupMessageEvent):
     if checkGroup(event):
-        await onLearningGroup.finish("派蒙已经在学习群友的话了哦")
+        await onLearningGroup.finish("打工战士已经在学习群友的话了哦")
     else:
         Chat.learningGroup.append(event.group_id)
-        await onLearningGroup.finish("派蒙开始学习群友说怪话!")
+        await onLearningGroup.finish("打工战士开始学习群友说怪话!")
 
 
 # 群组关闭
 offLearningGroup = on_message(
-    rule=to_me() & keyword("派蒙学习关闭", "不准说怪话"),
+    rule=to_me() & keyword("打工战士学习关闭", "不准说怪话"),
     priority=3,
     block=True,
     permission=permission.GROUP_ADMIN | permission.GROUP_OWNER | SUPERUSER
 )
 offLearningGroup.__paimon_help__ = {
-    "usage":     "@派蒙 <不准说怪话>",
-    "introduce": "关闭派蒙在该群的机器学习能力",
+    "usage":     "@打工战士 <不准说怪话>",
+    "introduce": "关闭打工战士在该群的机器学习能力",
     "priority":  95
 }
 
@@ -262,36 +262,36 @@ offLearningGroup.__paimon_help__ = {
 @offLearningGroup.handle()
 async def _(bot: Bot, event: GroupMessageEvent):
     if not checkGroup(event):
-        await offLearningGroup.finish("派蒙没有在学群友说话！")
+        await offLearningGroup.finish("打工战士没有在学群友说话！")
     else:
         Chat.learningGroup.remove(event.group_id)
-        await offLearningGroup.finish("派蒙不学就是了TAT")
+        await offLearningGroup.finish("打工战士不学就是了TAT")
 
 
 # 发癫
 fun_msg = on_message(
-    rule=to_me() & keyword('发癫', '派蒙发癫', '喝酒') & Rule(checkGroup),
+    rule=to_me() & keyword('发癫', '打工战士发癫', '喝酒') & Rule(checkGroup),
     priority=6,
     block=True,
     permission=permission.GROUP_ADMIN | permission.GROUP_OWNER | SUPERUSER
 )
 fun_msg.__paimon_help__ = {
-    "usage":     "@派蒙 <发癫>",
-    "introduce": "派蒙喝醉了在群里发癫",
+    "usage":     "@打工战士 <发癫>",
+    "introduce": "打工战士喝醉了在群里发癫",
     "priority":  96
 }
 
 
 @fun_msg.handle()
 async def funmsg(bot: Bot, event: GroupMessageEvent):
-    logger.info(f'repeater：派蒙开始发癫')
+    logger.info(f'repeater：打工战士开始发癫')
     Chat.answer_threshold = 1
     Chat.speak_threshold = 1
     Chat.speak_continuously_probability = 1
     Chat.speak_poke_probability = 1
     Chat.speak_continuously_max_len = 10
     Chat.cross_group_threshold = 1
-    msg_send = ['呀，旅行者。你今天走起路来，怎么看着摇摇晃晃的？嘿嘿嘿~~~', '……&%*&U（*……&%']
+    msg_send = ['呀，你今天走起路来，怎么看着摇摇晃晃的？嘿嘿嘿~~~', '……&%*&U（*……&%']
     await fun_msg.finish(random.choice(msg_send))
 
 
@@ -303,15 +303,15 @@ stop_fun_msg = on_message(
     permission=permission.GROUP_ADMIN | permission.GROUP_OWNER | SUPERUSER
 )
 stop_fun_msg.__paimon_help__ = {
-    "usage":     "@派蒙 <不准发癫>",
-    "introduce": "让派蒙恢复正常",
+    "usage":     "@打工战士 <不准发癫>",
+    "introduce": "让打工战士恢复正常",
     "priority":  97
 }
 
 
 @stop_fun_msg.handle()
 async def stopfunmsg(bot: Bot, event: GroupMessageEvent):
-    logger.info(f'repeater：派蒙停止发癫')
+    logger.info(f'repeater：打工战士停止发癫')
     Chat.answer_threshold = config.paimon_answer_threshold
     Chat.speak_threshold = config.paimon_speak_threshold
     Chat.speak_continuously_probability = config.paimon_speak_continuously_probability
@@ -324,14 +324,14 @@ async def stopfunmsg(bot: Bot, event: GroupMessageEvent):
 
 # 上调学习能力和主动发言
 upLearning = on_message(
-    rule=to_me() & keyword('加强学习能力', '派蒙快学', '再学快点', '多说点话') & Rule(checkGroup),
+    rule=to_me() & keyword('加强学习能力', '打工战士快学', '再学快点', '多说点话') & Rule(checkGroup),
     priority=6,
     block=True,
     permission=permission.GROUP_ADMIN | permission.GROUP_OWNER | SUPERUSER
 )
 upLearning.__paimon_help__ = {
-    "usage":     "@派蒙 <派蒙快学>",
-    "introduce": "增强派蒙的学习能力",
+    "usage":     "@打工战士 <打工战士快学>",
+    "introduce": "增强打工战士的学习能力",
     "priority":  98
 }
 
@@ -340,23 +340,23 @@ upLearning.__paimon_help__ = {
 async def _(bot: Bot, event: GroupMessageEvent):
     if Chat.speak_threshold == 1:
         Chat.answer_threshold = Chat.speak_threshold
-        await upLearning.finish("派蒙已经学满贯了")
+        await upLearning.finish("打工战士已经学满贯了")
     else:
         Chat.speak_threshold -= 1
         Chat.answer_threshold = Chat.speak_threshold
-        await upLearning.finish("派蒙会努力学习的")
+        await upLearning.finish("打工战士会努力学习的")
 
 
 # 降低学习能力和主动发言
 downLearning = on_message(
-    rule=to_me() & keyword('降低学习能力', '派蒙变笨', '笨比派蒙', '少说点话') & Rule(checkGroup),
+    rule=to_me() & keyword('降低学习能力', '打工战士变笨', '笨比打工战士', '少说点话') & Rule(checkGroup),
     priority=6,
     block=True,
     permission=permission.GROUP_ADMIN | permission.GROUP_OWNER | SUPERUSER
 )
 downLearning.__paimon_help__ = {
-    "usage":     "@派蒙 <派蒙变笨>",
-    "introduce": "降低派蒙的学习能力",
+    "usage":     "@打工战士 <打工战士变笨>",
+    "introduce": "降低打工战士的学习能力",
     "priority":  99
 }
 
@@ -365,8 +365,8 @@ downLearning.__paimon_help__ = {
 async def _(bot: Bot, event: GroupMessageEvent):
     if Chat.speak_threshold == 6:
         Chat.answer_threshold = Chat.speak_threshold
-        await downLearning.finish("派蒙不说话就是了o(￣ヘ￣o＃)")
+        await downLearning.finish("打工战士不说话就是了o(￣ヘ￣o＃)")
     else:
         Chat.speak_threshold += 1
         Chat.answer_threshold = Chat.speak_threshold
-        await downLearning.finish("知道了知道了，旅行者就是嫌派蒙吵了")
+        await downLearning.finish("知道了知道了，你就是嫌打工战士吵了")
