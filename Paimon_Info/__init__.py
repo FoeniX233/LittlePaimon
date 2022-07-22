@@ -503,7 +503,7 @@ async def mys_sign_auto_handler(event: MessageEvent, msg: Message = CommandArg()
                 if not cookie:
                     await mys_sign_auto.finish('你的该uid还没绑定cookie哦，先用ysb绑定吧!', at_sender=True)
                 await add_auto_sign(str(event.user_id), uid, remind_id)
-                await mys_sign_auto.finish('开启米游社自动签到成功,打工战士会在每日0点帮你签到', at_sender=True)
+                await mys_sign_auto.finish('开启米游社自动签到成功,打工战士会在每日8点帮你签到', at_sender=True)
             elif find_action.group('action') in ['关闭', '禁用', 'off']:
                 await delete_auto_sign(str(event.user_id), uid)
                 await mys_sign_auto.finish('关闭米游社自动签到成功', at_sender=True)
