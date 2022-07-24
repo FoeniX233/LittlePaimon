@@ -148,3 +148,4 @@ nohup.out
 .history
 user_data/gacha_log_data/*
 user_data/player_info/*
+.idea/
