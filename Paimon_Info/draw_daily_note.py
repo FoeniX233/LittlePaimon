@@ -144,7 +144,7 @@ async def draw_daily_note_card(data, uid):
                           role['avatar_side_icon'].split('/')[-1]
             role_avatar = await aiorequests.get_img(url=role['avatar_side_icon'], size=(65, 65), mode='RGBA',
                                                     save_path=role_avatar)
-            bg_img.alpha_composite(role_avatar, (533, 72 * i +112))
+            bg_img.alpha_composite(role_avatar, (533, 72 * i +110))
             if role['status'] == 'Ongoing':
                 # hour = int(role['remained_time']) // 3600
                 #
@@ -161,17 +161,17 @@ async def draw_daily_note_card(data, uid):
             i += 1
         max_time = int(max([s['remained_time'] for s in exp]))
         if max_time == 0:
-            bg_draw.text((580, 90), "探索派遣已全部完成", fill='#7b8386',
-                             font=get_font(30, 'HYWenHei-85W.ttf'))
+            bg_draw.text((580, 80), "探索派遣已全部完成", fill='#7b8386',
+                             font=get_font(26, 'HYWenHei-85W.ttf'))
         else:
             last_finish_time = datetime.datetime.now() + datetime.timedelta(seconds=max_time)
             last_finish_day = last_finish_time.day > datetime.datetime.now().day and '明天' or '今天'
             last_finish_str = f'{last_finish_day}{last_finish_time.strftime("%H:%M")}'
-            bg_draw.text((580, 90), f"最快将于{last_finish_str}完成", fill='#7b8386',
-                             font=get_font(30, 'HYWenHei-85W.ttf'))
+            bg_draw.text((580, 80), f"将于{last_finish_str}全部完成", fill='#7b8386',
+                             font=get_font(26, 'HYWenHei-85W.ttf'))
     else:
-        bg_draw.text((580, 90), "没有进行探索派遣", fill='#7b8386',
-                             font=get_font(30, 'HYWenHei-85W.ttf'))
+        bg_draw.text((580, 80), "没有进行探索派遣", fill='#7b8386',
+                             font=get_font(26, 'HYWenHei-85W.ttf'))
     role_img = load_image(random.choice(list((res_path / 'emoticons').iterdir())), size=1, mode='RGBA')
     bg_img.alpha_composite(role_img, (330, 645))
 
