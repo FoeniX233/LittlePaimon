@@ -167,7 +167,7 @@ async def draw_daily_note_card(data, uid):
             last_finish_time = datetime.datetime.now() + datetime.timedelta(seconds=max_time)
             last_finish_day = last_finish_time.day > datetime.datetime.now().day and '明天' or '今天'
             last_finish_str = f'{last_finish_day}{last_finish_time.strftime("%H:%M")}'
-            bg_draw.text((600, 80), f"将于{last_finish_str}全部完成", fill='#7b8386',
+            bg_draw.text((600, 80), f"最快将于{last_finish_str}完成", fill='#7b8386',
                              font=get_font(22, 'HYWenHei-85W.ttf'))
     else:
         bg_draw.text((600, 80), "没有进行探索派遣", fill='#7b8386',
