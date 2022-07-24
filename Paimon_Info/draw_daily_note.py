@@ -144,7 +144,7 @@ async def draw_daily_note_card(data, uid):
                           role['avatar_side_icon'].split('/')[-1]
             role_avatar = await aiorequests.get_img(url=role['avatar_side_icon'], size=(42, 42), mode='RGBA',
                                                     save_path=role_avatar)
-            bg_img.alpha_composite(role_avatar, (533, 72 * i +108))
+            bg_img.alpha_composite(role_avatar, (538, 72 * i +115))
             if role['status'] == 'Ongoing':
                 # hour = int(role['remained_time']) // 3600
                 #
@@ -161,7 +161,7 @@ async def draw_daily_note_card(data, uid):
             i += 1
         max_time = int(max([s['remained_time'] for s in exp]))
         if max_time == 0:
-            bg_draw.text((624, 90), "探索派遣已全部完成~", fill='#7b8386',
+            bg_draw.text((624, 90), "探索派遣已全部完成", fill='#7b8386',
                              font=get_font(20, 'HYWenHei-85W.ttf'))
         else:
             last_finish_time = datetime.datetime.now() + datetime.timedelta(seconds=max_time)

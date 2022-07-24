@@ -43,13 +43,13 @@ __plugin_meta__ = PluginMetadata(
     name="Paimon_Info",
     description="打工战士的原神信息查询模块",
     usage=(
-        "[ys (uid)]查看原神个人卡片(包含宝箱、探索度等数据)\n"
+        "[原神卡片 (uid)]查看原神个人卡片(包含宝箱、探索度等数据)\n"
         "[ysa (uid)]查看所有公开的8角色的简略信息\n"
         "[ysc (uid) 角色名]查看公开的8角色的详细信息\n"
         "*绑定私人cookie之后就可以查看所有角色啦\n"
         "--------\n"
-        "[ssbq/实时便签 (uid)]查询当前树脂、洞天宝钱、派遣状况等\n"
-        "[ssbq (uid) 开启提醒(树脂数)/关闭提醒]开启/关闭树脂提醒，达到树脂数时会在群里艾特你\n"
+        "[体力/实时便签 (uid)]查询当前树脂、洞天宝钱、派遣状况等\n"
+        "[体力 (uid) 开启提醒(树脂数)/关闭提醒]开启/关闭树脂提醒，达到树脂数时会在群里艾特你\n"
         "*绑定私人cookie之后才能使用\n"
         "--------\n"
         "[sy/深渊查询/深境螺旋查询 (uid) (层数)]查询深渊战绩信息\n"
@@ -87,9 +87,9 @@ sy.__paimon_help__ = {
     "introduce": "查看深渊战绩信息",
     "priority":  6
 }
-ssbq = on_command('ssbq', aliases={'实时便笺', '实时便签', '当前树脂'}, priority=7, block=True)
+ssbq = on_command('ssbq', aliases={'实时便笺', '实时便签', '当前树脂' ,'体力'}, priority=7, block=True)
 ssbq.__paimon_help__ = {
-    "usage":     "ssbq(uid)",
+    "usage":     "体力(uid)",
     "introduce": "*查看当前树脂、洞天宝钱、派遣状况等",
     "priority":  7
 }
@@ -101,13 +101,13 @@ myzj.__paimon_help__ = {
 }
 ys = on_command('ys', aliases={'原神卡片', '个人卡片'}, priority=7, block=True)
 ys.__paimon_help__ = {
-    "usage":     "ys(uid)",
+    "usage":     "原神卡片(uid)",
     "introduce": "查看原神个人卡片(宝箱、探索度等)",
     "priority":  1
 }
 ysa = on_command('ysa', aliases={'角色背包'}, priority=7, block=True)
 ysa.__paimon_help__ = {
-    "usage":     "ysa(uid)",
+    "usage":     "角色背包(uid)",
     "introduce": "查看原神公开角色的简略信息",
     "priority":  2
 }
