@@ -63,28 +63,28 @@ async def draw_daily_note_card(data, uid):
     # 树脂文字
     bg_draw.text((200, 185), f"{data['current_resin']}/160", fill='#7b8386', font=get_font(30, 'HYWenHei-85W.ttf'))
     if data['current_resin'] == 160:
-        bg_draw.text((205, 220), f"树脂满了哦~", fill='#7b8386', font=get_font(12, 'HYWenHei-55W.ttf'))
+        bg_draw.text((201, 220), f"树脂满了哦~", fill='#7b8386', font=get_font(12, 'HYWenHei-55W.ttf'))
     else:
         recover_time = datetime.datetime.now() + datetime.timedelta(seconds=int(data['resin_recovery_time']))
         recover_time_day = '今天' if recover_time.day == datetime.datetime.now().day else '明天'
         recover_time_str = f'将于{recover_time_day}{recover_time.strftime("%H:%M")}回满~'
-        bg_draw.text((205, 220), recover_time_str, fill='#7b8386', font=get_font(12, 'HYWenHei-55W.ttf'))
+        bg_draw.text((201, 220), recover_time_str, fill='#7b8386', font=get_font(12, 'HYWenHei-55W.ttf'))
 
     # 委托文字
     bg_draw.text((200, 260), f"{data['finished_task_num']}/4", fill='#7b8386',
                  font=get_font(30, 'HYWenHei-85W.ttf'))
     if data['finished_task_num'] == 4:
-        bg_draw.text((205, 295), "今日委托已全部完成~", fill='#7b8386', font=get_font(12, 'HYWenHei-55W.ttf'))
+        bg_draw.text((201, 295), "今日委托已全部完成~", fill='#7b8386', font=get_font(12, 'HYWenHei-55W.ttf'))
     else:
-        bg_draw.text((205, 295), "今日委托还未完成哦~", fill='#7b8386', font=get_font(12, 'HYWenHei-55W.ttf'))
+        bg_draw.text((201, 295), "今日委托还未完成哦~", fill='#7b8386', font=get_font(12, 'HYWenHei-55W.ttf'))
 
     # 周本文字
     bg_draw.text((200, 335), f"{3 - data['remain_resin_discount_num']}/3",fill='#7b8386',
                  font=get_font(30, 'HYWenHei-85W.ttf'))
     if data['remain_resin_discount_num'] == 0:
-        bg_draw.text((205, 370), "周本减半次数用尽啦~", fill='#7b8386', font=get_font(12, 'HYWenHei-55W.ttf'))
+        bg_draw.text((201, 370), "周本减半次数用尽啦~", fill='#7b8386', font=get_font(12, 'HYWenHei-55W.ttf'))
     else:
-        bg_draw.text((205, 370), f"还有{data['remain_resin_discount_num']}次周本减半呢~", fill='#7b8386',
+        bg_draw.text((201, 370), f"还有{data['remain_resin_discount_num']}次周本减半呢~", fill='#7b8386',
                      font=get_font(12, 'HYWenHei-55W.ttf'))
 
     # 质变文字
@@ -93,15 +93,15 @@ async def draw_daily_note_card(data, uid):
         rt = data['transformer']['recovery_time']
         if rt['Day'] == 0 and rt['reached']:
             bg_draw.text((200, 415), "可使用", fill='#7b8386', font=get_font(30, 'HYWenHei-85W.ttf'))
-            bg_draw.text((205, 450), "您的质量参变仪可以用啦~",
+            bg_draw.text((201, 450), "您的质量参变仪可以用啦~",
                          fill='#7b8386', font=get_font(12, 'HYWenHei-55W.ttf'))
         elif rt['Day'] == 0 and not rt['reached']:
             bg_draw.text((200, 415), "冷却中", fill='#7b8386', font=get_font(30, 'HYWenHei-85W.ttf'))
-            bg_draw.text((205, 450), f"{rt['Hour']}小时后可用~",
+            bg_draw.text((201, 450), f"{rt['Hour']}小时后可用~",
                          fill='#7b8386', font=get_font(12, 'HYWenHei-55W.ttf'))
         else:
             bg_draw.text((200, 415), "冷却中", fill='#7b8386', font=get_font(30, 'HYWenHei-85W.ttf'))
-            bg_draw.text((205, 450), f"{rt['Day']}天后可使用~",
+            bg_draw.text((201, 450), f"{rt['Day']}天后可使用~",
                          fill='#7b8386', font=get_font(12, 'HYWenHei-55W.ttf'))
     else:
         bg_draw.text((200, 415), "未获得", fill='#7b8386', font=get_font(30, 'HYWenHei-85W.ttf'))
@@ -123,7 +123,7 @@ async def draw_daily_note_card(data, uid):
     bg_draw.text((200, 500), f"{data['current_home_coin']}/{data['max_home_coin']}", fill='#7b8386',
                  font=get_font(30, 'HYWenHei-85W.ttf'))
     if data['current_home_coin'] == data['max_home_coin']:
-        bg_draw.text((200, 535), f"洞天宝钱满了哦~", fill='#7b8386', font=get_font(12, 'HYWenHei-55W.ttf'))
+        bg_draw.text((201, 535), f"洞天宝钱满了哦~", fill='#7b8386', font=get_font(12, 'HYWenHei-55W.ttf'))
     else:
         recover_time = datetime.datetime.now() + datetime.timedelta(seconds=int(data['home_coin_recovery_time']))
         recover_time_day = recover_time.day - datetime.datetime.now().day
@@ -134,7 +134,7 @@ async def draw_daily_note_card(data, uid):
         else:
             recover_time_day_str = str(recover_time.day) + '日'
         recover_time_str = f'将于{recover_time_day_str}{recover_time.strftime("%H:%M")}达到上限~'
-        bg_draw.text((200, 535), recover_time_str, fill='#7b8386', font=get_font(12, 'HYWenHei-55W.ttf'))
+        bg_draw.text((201, 535), recover_time_str, fill='#7b8386', font=get_font(12, 'HYWenHei-55W.ttf'))
     # 派遣情况
     exp = data['expeditions']
     if exp:
@@ -142,9 +142,9 @@ async def draw_daily_note_card(data, uid):
         for role in exp:
             role_avatar = Path() / 'data' / 'LittlePaimon' / 'res' / 'avatar_side' / \
                           role['avatar_side_icon'].split('/')[-1]
-            role_avatar = await aiorequests.get_img(url=role['avatar_side_icon'], size=(65, 65), mode='RGBA',
+            role_avatar = await aiorequests.get_img(url=role['avatar_side_icon'], size=(42, 42), mode='RGBA',
                                                     save_path=role_avatar)
-            bg_img.alpha_composite(role_avatar, (543, 70 * i + 127))
+            bg_img.alpha_composite(role_avatar, (533, 72 * i +108))
             if role['status'] == 'Ongoing':
                 # hour = int(role['remained_time']) // 3600
                 #
@@ -153,10 +153,10 @@ async def draw_daily_note_card(data, uid):
                 finish_time = datetime.datetime.now() + datetime.timedelta(seconds=finish_sec)
                 finish_day = finish_time.day > datetime.datetime.now().day and '明天' or '今天'
                 finish_str = f'{finish_day}{finish_time.strftime("%H:%M")}'
-                bg_draw.text((615, 70 * i + 143), f"将于{finish_str}完成", fill='#7b8386',
+                bg_draw.text((615, 72 * i + 141), f"将于{finish_str}完成", fill='#7b8386',
                              font=get_font(20, 'HYWenHei-55W.ttf'))
             else:
-                bg_draw.text((615, 70 * i + 143), "已完成", fill='#7b8386',
+                bg_draw.text((615, 72 * i + 141), "已完成", fill='#7b8386',
                              font=get_font(20, 'HYWenHei-55W.ttf'))
             i += 1
         max_time = int(max([s['remained_time'] for s in exp]))
