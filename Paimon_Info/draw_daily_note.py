@@ -142,7 +142,7 @@ async def draw_daily_note_card(data, uid):
         for role in exp:
             role_avatar = Path() / 'data' / 'LittlePaimon' / 'res' / 'avatar_side' / \
                           role['avatar_side_icon'].split('/')[-1]
-            role_avatar = await aiorequests.get_img(url=role['avatar_side_icon'], size=(42, 42), mode='RGBA',
+            role_avatar = await aiorequests.get_img(url=role['avatar_side_icon'], size=(65, 65), mode='RGBA',
                                                     save_path=role_avatar)
             bg_img.alpha_composite(role_avatar, (538, 72 * i +115))
             if role['status'] == 'Ongoing':
