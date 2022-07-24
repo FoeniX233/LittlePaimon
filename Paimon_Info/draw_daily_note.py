@@ -161,16 +161,16 @@ async def draw_daily_note_card(data, uid):
             i += 1
         max_time = int(max([s['remained_time'] for s in exp]))
         if max_time == 0:
-            bg_draw.text((580, 80), "探索派遣已全部完成", fill='#7b8386',
+            bg_draw.text((600, 80), "探索派遣已全部完成", fill='#7b8386',
                              font=get_font(26, 'HYWenHei-85W.ttf'))
         else:
             last_finish_time = datetime.datetime.now() + datetime.timedelta(seconds=max_time)
             last_finish_day = last_finish_time.day > datetime.datetime.now().day and '明天' or '今天'
             last_finish_str = f'{last_finish_day}{last_finish_time.strftime("%H:%M")}'
-            bg_draw.text((580, 80), f"将于{last_finish_str}全部完成", fill='#7b8386',
+            bg_draw.text((600, 80), f"将于{last_finish_str}全部完成", fill='#7b8386',
                              font=get_font(26, 'HYWenHei-85W.ttf'))
     else:
-        bg_draw.text((580, 80), "没有进行探索派遣", fill='#7b8386',
+        bg_draw.text((600, 80), "没有进行探索派遣", fill='#7b8386',
                              font=get_font(26, 'HYWenHei-85W.ttf'))
     role_img = load_image(random.choice(list((res_path / 'emoticons').iterdir())), size=1, mode='RGBA')
     bg_img.alpha_composite(role_img, (330, 645))
